@@ -1,0 +1,2 @@
+# QMultisweeper
+Multiplayer minesweeper
