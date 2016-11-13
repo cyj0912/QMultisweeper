@@ -277,3 +277,13 @@ void MainWindow::on_dataIn()
     }
     MyScene->invalidate(0,0,40*TheBoard->rows,40*TheBoard->cols);
 }
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, "Multisweeper", "Toby Chen");
+}
+
+void MainWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this);
+}

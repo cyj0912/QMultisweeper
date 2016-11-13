@@ -27,6 +27,10 @@ private slots:
     void on_client();
     void on_dataIn();
 
+    void on_actionAbout_triggered();
+
+    void on_actionAbout_Qt_triggered();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene;
