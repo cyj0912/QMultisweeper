@@ -154,7 +154,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     scene(nullptr)
 {
-    TheBoard = new board(16, 16, 35);
+    TheBoard = new board(16, 16, 40);
     ui->setupUi(this);
     view = new QGraphicsView(ui->centralWidget);
     ui->verticalLayout_2->addWidget(view);
@@ -185,7 +185,7 @@ void MainWindow::on_actionNew_Game_triggered()
 {
     if(TheBoard)
         delete TheBoard;
-    TheBoard = new board(16, 16, 35);
+    TheBoard = new board(16, 16, 40);
     PlaceTiles(TheBoard->rows, TheBoard->cols);
 }
 
