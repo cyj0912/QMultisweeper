@@ -238,12 +238,12 @@ void MainWindow::on_dataIn()
     }
     if(cmd[0] == '!' && cmd[2] == 'G')
     {//The other player GG
-        ui->statusBar->showMessage("The other player GGed. You won.");
+        ui->statusBar->showMessage("GG");
         return;
     }
     if(cmd[0] == '!' && cmd[2] == 'F')
     {//The other player finished
-        ui->statusBar->showMessage("The other player finished. You lose.");
+        ui->statusBar->showMessage("Congratulations!!!");
         return;
     }
     int row = cmd[2], col = cmd[3];

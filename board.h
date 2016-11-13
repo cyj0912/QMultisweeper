@@ -155,7 +155,7 @@ public:
     }
 
     void generateMines(int r, int c/*This specifies the tile to avoid*/) {
-        //srand(time(NULL));
+        srand(time(NULL));
         tiles[r][c].isMine = true;
         int numGenerated = 0;
         while(numGenerated < mines) {
