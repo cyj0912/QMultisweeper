@@ -9,6 +9,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGradient>
 #include <QtNetwork>
+#include <QTime>
 
 board* TheBoard = nullptr;
 QString IPAddress;
@@ -22,6 +23,8 @@ class QTile : public QGraphicsRectItem {
 public:
     int Row, Col;
     QGraphicsSimpleTextItem* text;
+    QTime HoverTimer;
+    QGraphicsColorizeEffect* Colorize;
     QTile(int x, int y, int w, int h, int row, int col) : QGraphicsRectItem(x, y, w, h)
     {
         setPen(QPen(Qt::white));
@@ -31,6 +34,8 @@ public:
         text->setPos(x + 15, y + 15);
         text->setBrush(Qt::white);
         UpdateFromBoard();
+        setAcceptHoverEvents(true);
+        Colorize = nullptr;
     }
 
     void UpdateFromBoard() {
@@ -140,11 +145,29 @@ protected:
         sc->invalidate(0,0,40*TheBoard->rows,40*TheBoard->cols);
     }
 
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override
+    {
+        Colorize = new QGraphicsColorizeEffect();
+        this->setGraphicsEffect(Colorize);
+        Colorize->setColor(QColor(255, 255, 255));
+        HoverTimer.start();
+    }
+
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override
+    {
+        this->setGraphicsEffect(nullptr);
+        Colorize = nullptr;
+    }
+
     // QGraphicsItem interface
 public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override
     {
         UpdateFromBoard();
+        if(Colorize)
+        {
+            Colorize->setStrength(500.0 / 1000.0);
+        }
         QGraphicsRectItem::paint(painter, option, widget);
     }
 };
